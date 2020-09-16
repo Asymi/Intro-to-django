@@ -6,6 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>You have chose {{ pizza.name }}</h1>
+    <h1>You have chosen {{ pizza.name }} with a base of {{ pizza.base }}</h1>
+    {% if not pizza.eater %}
+        <p>There still some pizza left, you can eat it</p>
+    {% else %}
+        {% if pizza.eater == user %}
+            <p>You ate the pizza already.</p>
+        {% else %}
+            <p>{{pizza.eater}} ate the pizza already, blame them.</p>
+        {% endif%}
+    {% endif %}    
 </body>
 </html>

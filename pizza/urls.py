@@ -1,11 +1,9 @@
 from django.urls import path
+from django.conf.urls import handler404, handler500
 from . import views
 
 urlpatterns = [
     path('', views.index, name="pizza-index"),
-    path('pizzas/<int:pizza_id>', views.show, name='adoption-show'),
-    #path('404', views.NotFound, name='404-not-found')
+    path('pizzas/<int:pizza_id>', views.show, name='pizza-show'),
+    path('pizzas/new/', views.create, name='create-pizza')
 ]
-
-handler500 = views.handle500
-handler404 = views.handle404
