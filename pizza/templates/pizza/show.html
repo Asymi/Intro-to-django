@@ -8,13 +8,25 @@
 <body>
     <h1>You have chosen {{ pizza.name }} with a base of {{ pizza.base }}</h1>
     {% if not pizza.eater %}
-        <p>There still some pizza left, you can eat it</p>
+        <form method="POST">
+            {% csrf_token %}
+            <!-- All this does is render the form (.as_p) as paragraph -->
+            {{ form.as_p }}
+            <p>There still some pizza left, you can eat it</p>
+            <input type="submit" value="Eat me!"></input>
+        </form>
     {% else %}
         {% if pizza.eater == user %}
-            <p>You ate the pizza already.</p>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p>You ate the pizza already, un-eat it to make it available.</p>
+                <input type="submit" value="Un-eat!"></input>
+            </form>
         {% else %}
-            <p>{{pizza.eater}} ate the pizza already, blame them.</p>
+            <p>This pizza has been eaten by {{pizza.eater}}.</p>
+            <button disabled="disabled">Eat pizza</button>
         {% endif%}
-    {% endif %}    
+    {% endif %}
 </body>
 </html>

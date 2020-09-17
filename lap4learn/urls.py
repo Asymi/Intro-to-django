@@ -23,7 +23,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('signup/', user_views.signup, name='signup'),
     path('admin/', admin.site.urls),
-    path('pizza/', include('pizza.urls'))
+    path('', include('pizza.urls'))
 ]
 
 handler500 = 'pizza.views.handler500'
